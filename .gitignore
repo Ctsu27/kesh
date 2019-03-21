@@ -1,0 +1,17 @@
+*.DS_Store
+
+/.vscode
+.*.swp
+
+/main.c
+/21sh
+
+*objs
+/dev
+/debug
+*.dSYM
+
+*.o
+*.a
+*.out
+*.so
