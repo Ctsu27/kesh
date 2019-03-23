@@ -48,7 +48,7 @@ else
   CFLAGS				+=			-g3
   CFLAGS				+=			-pedantic
   else
-  OBJ_DIR				:=			./obj
+  OBJ_DIR				:=			./objs
   endif
 endif
 
@@ -101,10 +101,31 @@ INC_UTILS_NAME			:=			utils.h					\
 SRC_UTILS_NAME			:=			ft_mem2del.c			\
 									ft_str2dup.c			\
 									ft_putendl2.c			\
+									is_pow_of2.c			\
+									round_up_pow.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_UTILS_NAME:.c=.o))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_UTILS_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_UTILS_DIR)/,$(INC_UTILS_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
+#   ARRAY
+
+SRC_ARRAY_DIR			:=			array
+
+INC_ARRAY_NAME			:=			array.h					\
+
+SRC_ARRAY_NAME			:=			find_array.c			\
+									find_index_array.c		\
+									init_array.c			\
+									new_array.c				\
+									push_array.c			\
+									realloc_array.c			\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_ARRAY_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_ARRAY_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_ARRAY_DIR)/,$(INC_ARRAY_NAME))
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
@@ -155,7 +176,7 @@ ra:
 t test unit:
 	@$(MAKE)
 	@find $(ROOT_PROJECT)/$(TEST_DIR) -name "*.c" -exec \
-		$(CC) {} -o {}.unit.out -I$(INC_DIR) \;
+		$(CC) {} -o {}.unit.out $(LIBFLAGS) $(filter-out $(OBJ_DIR)/kesh.o,$(OBJS)) -I$(INC_DIR) \;
 	@find -s $(ROOT_PROJECT)/$(TEST_DIR) -name "*.unit.out" -exec \
 		{} \;
 	@find -s $(ROOT_PROJECT)/$(TEST_DIR) -name "*.unit.out" -exec \
