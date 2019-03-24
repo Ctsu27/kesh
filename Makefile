@@ -124,6 +124,7 @@ SRC_ARRAY_NAME			:=			find_array.c			\
 									init_array.c			\
 									new_array.c				\
 									push_array.c			\
+									push_at_array.c			\
 									realloc_array.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_ARRAY_NAME:.c=.o))
