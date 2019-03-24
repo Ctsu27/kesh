@@ -101,6 +101,7 @@ INC_UTILS_NAME			:=			utils.h					\
 SRC_UTILS_NAME			:=			ft_mem2del.c			\
 									ft_str2dup.c			\
 									ft_putendl2.c			\
+									get_ptr.c				\
 									is_pow_of2.c			\
 									round_up_pow.c			\
 

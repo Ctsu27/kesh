@@ -1,4 +1,5 @@
 #include "array.h"
+#include "utils.h"
 
 size_t	find_index_array(t_array *a, int (*cmp)(void *))
 {
@@ -13,7 +14,7 @@ size_t	find_index_array(t_array *a, int (*cmp)(void *))
 	size_p = a->size_p;
 	while (idx < max)
 	{
-		if (cmp(a->p + (idx * size_p)) == 0)
+		if (cmp(get_ptr(a->p, idx, size_p)) == 0)
 			return (idx);
 		++idx;
 	}

@@ -1,4 +1,5 @@
 #include "array.h"
+#include "utils.h"
 
 void	*find_array(t_array *a, int (*cmp)(void *))
 {
@@ -13,8 +14,8 @@ void	*find_array(t_array *a, int (*cmp)(void *))
 	size_p = a->size_p;
 	while (idx < max)
 	{
-		if (cmp(a->p + (idx * size_p)) == 0)
-			return (a->p + (idx * size_p));
+		if (cmp(get_ptr(a->p, idx, size_p)) == 0)
+			return (get_ptr(a->p, idx, size_p));
 		++idx;
 	}
 	return (NULL);
