@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 
+extern int		ft_getopt(int argc, char **argv, char const *opt_str, _Bool *flag);
 extern void		ft_mem2del(void ***mem, size_t const size);
 extern void		ft_putendl2(char const **s);
 extern char		**ft_str2dup(char const **s);

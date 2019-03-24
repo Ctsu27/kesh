@@ -11,7 +11,7 @@
 typedef struct	s_chai
 {
 	char	*msg;
-	int		(*check)(t_array *, int *, size_t);
+	int		(*check)();
 	void	(*apply_before)();
 }				t_chai;
 

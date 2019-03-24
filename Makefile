@@ -98,7 +98,8 @@ SRC_UTILS_DIR			:=			utils
 
 INC_UTILS_NAME			:=			utils.h					\
 
-SRC_UTILS_NAME			:=			ft_mem2del.c			\
+SRC_UTILS_NAME			:=			ft_getopt.c				\
+									ft_mem2del.c			\
 									ft_str2dup.c			\
 									ft_putendl2.c			\
 									get_ptr.c				\
