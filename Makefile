@@ -166,6 +166,12 @@ re:
 	@$(MAKE)
 .PHONY: re
 
+delete:
+	@$(MAKE) fclean
+	@$(MAKE) DEV="1" fclean
+	@$(MAKE) DEBUG="1" fclean
+.PHONY: delete
+
 pclean:
 	@rm -rf $(OBJ_DIR)
 	@printf '${C_Y}[ KILL ] ${C_C}$(NAME)${C_Y} Clean ${C_R}$(OBJ_DIR)${C_Y} ---\n${C_X}'
