@@ -1,4 +1,6 @@
-int		builtin_setenv(int argc, char **argv, char **env)
+#include "array.h"
+
+int		builtin_setenv(int argc, t_array *argv, t_array *env)
 {
 	(void)argc;
 	(void)argv;
