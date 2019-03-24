@@ -12,7 +12,16 @@ void	realloc_array(t_array *a, size_t size, size_t size_p)
 	{
 		tmp = *a;
 		*a = new_array(NULL, round_up_pow(size), size_p);
-		ft_memcpy(a->p, tmp.p, tmp.size);
+		if (tmp.size < size)
+		{
+			ft_memcpy(a->p, tmp.p, tmp.size);
+			a->size = tmp.size;
+		}
+		else
+		{
+			ft_memcpy(a->p, tmp.p, size);
+			a->size = size;
+		}
 		free(tmp.p);
 	}
 }
