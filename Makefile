@@ -121,6 +121,7 @@ INC_ARRAY_NAME			:=			array.h					\
 
 SRC_ARRAY_NAME			:=			find_array.c			\
 									find_index_array.c		\
+									foreach_array.c			\
 									init_array.c			\
 									new_array.c				\
 									push_array.c			\
@@ -132,6 +133,29 @@ OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_ARRAY_NAME:.c=.o))
 $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_ARRAY_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_ARRAY_DIR)/,$(INC_ARRAY_NAME))
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
+#   FT_PRINTF
+
+SRC_FT_PRINTF_DIR		:=			ft_printf
+
+INC_FT_PRINTF_NAME		:=			ft_printf.h				\
+									ft_printf_int.h			\
+
+SRC_FT_PRINTF_NAME		:=			ft_pf.c					\
+									ft_pf_buf.c				\
+									c_conv.c				\
+									id_conv.c				\
+									s_conv.c				\
+									u_conv.c				\
+									x__conv.c				\
+									x_conv.c				\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_FT_PRINTF_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_FT_PRINTF_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_UTILS_DIR)/$(SRC_FT_PRINTF_DIR)/,$(INC_FT_PRINTF_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
 
 #==============================================================================#
 #------------------------------------------------------------------------------#

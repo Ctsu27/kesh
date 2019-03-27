@@ -19,6 +19,7 @@ typedef struct	s_array
 
 extern void		*find_array(t_array *a, int (*cmp)(void *));
 extern size_t	find_index_array(t_array *a, int (*cmp)(void *));
+extern void		foreach_array(t_array *a, void (*callback)());
 
 extern t_array	init_array(void *p, size_t capacity,
 	size_t size, size_t size_p);
