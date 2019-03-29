@@ -2,35 +2,23 @@
 
 char const *g_str_number = "0123456789abcdef";
 
-static const _Bool	g_is_convert[256] = {[0 ... 'X' - 1] = 0,
+static const _Bool	g_is_convert[256] = {
 						['X'] = 1,
-						['X' + 1 ... 'c' - 1] = 0,
 						['c'] = 1,
 						['d'] = 1,
-						['d' + 1 ... 'i' - 1] = 0,
 						['i'] = 1,
-						['i' + 1 ... 's' - 1] = 0,
 						['s'] = 1,
-						['s' + 1 ... 'u' - 1] = 0,
 						['u'] = 1,
-						['u' + 1 ... 'x' - 1] = 0,
-						['x'] = 1,
-						['x' + 1 ... 255] = 0
+						['x'] = 1
 					};
-static int	(*g_converter[256])() = {[0 ... 'X' - 1] = NULL,
+static int	(*g_converter[256])() = {
 						['X'] = &x__conv,
-						['X' + 1 ... 'c' - 1] = NULL,
 						['c'] = &c_conv,
 						['d'] = &id_conv,
-						['d' + 1 ... 'i' - 1] = NULL,
 						['i'] = &id_conv,
-						['i' + 1 ... 's' - 1] = NULL,
 						['s'] = &s_conv,
-						['s' + 1 ... 'u' - 1] = NULL,
 						['u'] = &u_conv,
-						['u' + 1 ... 'x' - 1] = NULL,
-						['x'] = &x_conv,
-						['x' + 1 ... 255] = 0
+						['x'] = &x_conv
 					};
 
 int			ft_dpf(int fd, const char *fmt, ...)
