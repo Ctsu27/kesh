@@ -135,6 +135,7 @@ int const g_token_definition[TOKEN_STATE_SIZE][128] = {
 		['~'] = TOKEN_UNDEFINED_UNDEFINED,
 		['\x7f'] = TOKEN_UNDEFINED_UNDEFINED
 	},
+
 	[TOKEN_STATE_BASIC] = {
 		['\0'] = TOKEN_BASIC_UNDEFINED,
 		['\x1'] = TOKEN_BASIC_UNDEFINED,
@@ -170,12 +171,12 @@ int const g_token_definition[TOKEN_STATE_SIZE][128] = {
 		['\x1f'] = TOKEN_BASIC_UNDEFINED,
 		[' '] = TOKEN_BASIC_WSPACE,
 		['!'] = TOKEN_BASIC_WORD,
-		['"'] = TOKEN_BASIC_QUOTE,
+		['"'] = TOKEN_BASIC_DQUOTE,
 		['#'] = TOKEN_BASIC_WORD,
 		['$'] = TOKEN_BASIC_EXPANSION,
 		['%'] = TOKEN_BASIC_WORD,
 		['&'] = TOKEN_BASIC_AND,
-		['\''] = TOKEN_BASIC_QUOTE,
+		['\''] = TOKEN_BASIC_SQUOTE,
 		['('] = TOKEN_BASIC_WORD,
 		[')'] = TOKEN_BASIC_WORD,
 		['*'] = TOKEN_BASIC_WORD,
@@ -232,7 +233,7 @@ int const g_token_definition[TOKEN_STATE_SIZE][128] = {
 		[']'] = TOKEN_BASIC_WORD,
 		['^'] = TOKEN_BASIC_WORD,
 		['_'] = TOKEN_BASIC_WORD,
-		['`'] = TOKEN_BASIC_QUOTE,
+		['`'] = TOKEN_BASIC_BQUOTE,
 		['a'] = TOKEN_BASIC_WORD,
 		['b'] = TOKEN_BASIC_WORD,
 		['c'] = TOKEN_BASIC_WORD,
@@ -267,56 +268,51 @@ int const g_token_definition[TOKEN_STATE_SIZE][128] = {
 	}
 };
 
-int				(*g_work[TOKEN_STATE_SIZE][10])() = {
-	[TOKEN_STATE_UNDEFINED] = {
-		[TOKEN_UNDEFINED_UNDEFINED] = 0
-	},
-	[TOKEN_STATE_BASIC] = {
-		[TOKEN_BASIC_UNDEFINED] = 0,
-		[TOKEN_BASIC_WSPACE] = 0,
-		[TOKEN_BASIC_WORD] = 0,
-		[TOKEN_BASIC_QUOTE] = 0,
-		[TOKEN_BASIC_SEMICOLON] = 0,
-		[TOKEN_BASIC_PIPE] = 0,
-		[TOKEN_BASIC_AND] = 0,
-		[TOKEN_BASIC_LESS] = 0,
-		[TOKEN_BASIC_GREAT] = 0,
-		[TOKEN_BASIC_EXPANSION] = 0
-	},
-	[TOKEN_STATE_QUOTE] = {
-		0,
-	},
-	[TOKEN_STATE_EXPANSION] = {
-		0	
-	},
+int				(*g_token_basic_handler[12])() = {
+	[TOKEN_BASIC_UNDEFINED] = 0,
+	[TOKEN_BASIC_WSPACE] = 0,
+	[TOKEN_BASIC_WORD] = 0,
+	[TOKEN_BASIC_SQUOTE] = 0,
+	[TOKEN_BASIC_DQUOTE] = 0,
+	[TOKEN_BASIC_BQUOTE] = 0,
+	[TOKEN_BASIC_SEMICOLON] = 0,
+	[TOKEN_BASIC_PIPE] = 0,
+	[TOKEN_BASIC_AND] = 0,
+	[TOKEN_BASIC_LESS] = 0,
+	[TOKEN_BASIC_GREAT] = 0,
+	[TOKEN_BASIC_EXPANSION] = 0
 };
 
 #include "strft.h"
 
 // int		lexer(t_array *input)
-int		lexer(char *input)
+int		lexer(char *input, t_array *token)
 {
-	t_array	token;
 	size_t	max;
 	size_t	idx;
-	int		token_state;
 	int		ret;
 
 	(void)token;
 	ft_pf("lexer input: [%s]\n", input);
 	ft_pf("sizeof(g_token_definition) = %u\n", (unsigned int)sizeof(g_token_definition));
-	ft_pf("sizeof(g_work) = %u\n", (unsigned int)sizeof(g_work));
+	ft_pf("sizeof(g_token_basic_handler) = %u\n", (unsigned int)sizeof(g_token_basic_handler));
 	max = ft_strlen(input);
 	idx = 0;
-	token_state = TOKEN_STATE_BASIC;
 	while (idx < max)
 	{
-		if (g_work[token_state][g_token_definition[token_state][(int)input[idx]]] == 0
-			|| (ret = g_work[token_state][g_token_definition[token_state][(int)input[idx]]](&idx, &token_state, &token, input[idx])) != 0)
+		if (g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]] == 0)
 		{
-			ft_dpf(2, "something happened near [%u] => '%c' :( ret = [%d]\n",
-					idx, input[idx], ret);
+			ft_dpf(2, "Token undefined near [%u] => '%c' :(\n", idx, input[idx]);
 			return (-1);
+		}
+		ret = g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]](&idx, &token, input[idx]);
+		if (ret != 0)
+		{
+			if (ret == -1)
+				ft_dpf(2, "Something happened near [%u] => '%c' :(\n", idx, input[idx]);
+				else if (ret == 1)
+				ft_pf("need closure :D\n");
+			return (ret);
 		}
 		++idx;
 	}
