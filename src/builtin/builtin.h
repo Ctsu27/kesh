@@ -3,10 +3,10 @@
 
 # include "array.h"
 
-int		builtin_cd(int argc, t_array *argv, t_array *env)__attribute__((hot));
-int		builtin_echo(int argc, t_array *argv, t_array *env)__attribute__((cold));
+int		builtin_cd(int argc, t_array *argv, t_array *env);
+int		builtin_echo(int argc, t_array *argv, t_array *env);
 int		builtin_env(int argc, t_array *argv, t_array *env);
-int		builtin_exit(int argc, t_array *argv, t_array *env)__attribute__((cold));
+int		builtin_exit(int argc, t_array *argv, t_array *env);
 int		builtin_setenv(int argc, t_array *argv, t_array *env);
 int		builtin_unsetenv(int argc, t_array *argv, t_array *env);
 

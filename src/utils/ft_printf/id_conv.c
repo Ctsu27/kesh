@@ -19,7 +19,7 @@ int		id_conv(t_pf *buf, va_list *ap)
 		{
 			n = nb % 10;
 			if (n < 0)
-					n = -n;
+				n = -n;
 			str[idx++] = g_str_number[n];
 			nb /= 10;
 		}

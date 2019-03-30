@@ -3,8 +3,9 @@
 #include "strft.h"
 #include "utils.h"
 
-int		builtin_exit(int argc, t_array *argv, __attribute__((unused))t_array *env)
+int		builtin_exit(int argc, t_array *argv, t_array *env)
 {
+	(void)env;
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
 	else if (argc == 2)

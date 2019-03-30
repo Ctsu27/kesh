@@ -92,6 +92,21 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_BUILTIN_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_B
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
 #-----------#
+#   LEXER   #
+
+SRC_LEXER_DIR			:=			lexer
+
+INC_LEXER_NAME			:=			lexer.h					\
+
+SRC_LEXER_NAME			:=			lexer.c					\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_LEXER_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_LEXER_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_LEXER_DIR)/,$(INC_LEXER_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
+#-----------#
 #   UTILS   #
 
 SRC_UTILS_DIR			:=			utils

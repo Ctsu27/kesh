@@ -1,21 +1,21 @@
 #include "array.h"
+#include "utils.h"
 #include "ioft.h"
 
-int		builtin_echo(int argc, t_array *argv, __attribute__((unused))t_array *env)
+int		builtin_echo(int argc, t_array *argv, t_array *env)
 {
-	char	**av;
 	int		idx;
 
+	(void)env;
 	idx = 1;
 	if (idx < argc)
 	{
-		av = (char **)argv->p;
-		ft_putstr(av[idx]);
+		ft_putstr((char const *)get_ptr(argv->p, idx, sizeof(char *)));
 		++idx;
 		while (idx < argc)
 		{
 			ft_putchar(' ');
-			ft_putstr(av[idx]);
+			ft_putstr((char const *)get_ptr(argv->p, idx, sizeof(char *)));
 			++idx;
 		}
 	}

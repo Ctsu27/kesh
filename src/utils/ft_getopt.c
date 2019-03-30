@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "ioft.h"
+#include "ft_printf.h"
 
 inline static void	set_flag_set(_Bool *sets, char const *opt_str)
 {
@@ -25,10 +25,7 @@ inline static int	ft_getopt_flags(char const **argv, size_t const idx,
 			flag[(int)argv[idx][idx2]] = 1;
 		else
 		{
-			ft_putstr_fd(argv[0], 2);
-			ft_putstr_fd(": illegal option -- ", 2);
-			ft_putchar_fd(argv[idx][idx2], 2);
-			ft_putchar_fd('\n', 2);
+			ft_dpf(2, "%s: illegal option -- %c\n", argv[0], argv[idx][idx2]);
 			return (-1);
 		}
 		++idx2;
@@ -36,7 +33,8 @@ inline static int	ft_getopt_flags(char const **argv, size_t const idx,
 	return (0);
 }
 
-int			ft_getopt(int argc, char **argv, char const *opt_str, _Bool *flag)
+int					ft_getopt(int argc, char **argv,
+						char const *opt_str, _Bool *flag)
 {
 	_Bool	flag_set[256];
 	int		idx;
