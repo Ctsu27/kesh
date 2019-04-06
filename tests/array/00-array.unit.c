@@ -75,7 +75,7 @@ int			main(void)
 	int			ret_test;
 
 	printf("Array[%zu]:\n", sizeof(test) / sizeof(*test));
-	a = new_array((void *)data, sizeof(data), sizeof(int));
+	a = new_array((void *)data, sizeof(data), sizeof(int), 0);
 	for (size_t idx = 0, max = sizeof(test) / sizeof(*test);
 		 idx < max;
 		 ++idx)

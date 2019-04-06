@@ -1,4 +1,5 @@
 #include "array.h"
+#include "utils.h"
 
 void	foreach_array(t_array *a, void (*callback)())
 {

@@ -6,7 +6,7 @@
 #    By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/12 10:24:15 by kehuang           #+#    #+#              #
-#    Updated: 2019/03/21 21:33:28 by kehuang          ###   ########.fr        #
+#    Updated: 2019/04/06 15:20:31 by kehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -222,6 +222,11 @@ ra:
 	@$(MAKE)
 .PHONY: ra
 
+run:
+	@$(MAKE)
+	./$(NAME)
+.PHONY: run
+
 t test unit:
 	@$(MAKE)
 	@find $(ROOT_PROJECT)/$(TEST_DIR) -name "*.c" -exec \
@@ -238,3 +243,10 @@ ifeq (,$(findstring fsanitize,$(CFLAGS)))
 else
 	@echo "Can not run valgrind ${C_C}./$(NAME)${C_X} because fsanitize is in flags"
 endif
+.PHONY: val vg valg
+
+main:
+	@$(MAKE)
+	@gcc -o test main.c $(LIBFLAGS) $(filter-out $(OBJ_DIR)/kesh.o,$(OBJS)) -I$(INC_DIR)
+	./test
+.PHONY: main

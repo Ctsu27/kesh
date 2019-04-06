@@ -10,12 +10,12 @@ int		builtin_echo(int argc, t_array *argv, t_array *env)
 	idx = 1;
 	if (idx < argc)
 	{
-		ft_putstr((char const *)get_ptr(argv->p, idx, sizeof(char *)));
+		ft_putstr((char const *)get_ptr(argv, idx));
 		++idx;
 		while (idx < argc)
 		{
 			ft_putchar(' ');
-			ft_putstr((char const *)get_ptr(argv->p, idx, sizeof(char *)));
+			ft_putstr((char const *)get_ptr(argv, idx));
 			++idx;
 		}
 	}

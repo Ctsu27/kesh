@@ -79,4 +79,6 @@ typedef struct	s_token
 	int				(*f)(void *);
 	unsigned int	type;
 }				t_token;
+
+extern char	*token_state_to_string(int const id);
 #endif

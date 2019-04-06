@@ -302,7 +302,7 @@ int		lexer(char *input, t_array *token)
 	{
 		if (g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]] == 0)
 		{
-			ft_dpf(2, "Token undefined near [%u] => '%c' :(\n", idx, input[idx]);
+			ft_dpf(2, "Function token: undefined near [%u] => '%c' :(\n", idx, input[idx]);
 			return (-1);
 		}
 		ret = g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]](&idx, &token, input[idx]);

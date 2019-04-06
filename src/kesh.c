@@ -1,31 +1,34 @@
 #include <stdio.h>
+
+
 #include <stdlib.h>
 #include "libft.h"
 #include "kesh.h"
 #include "utils.h"
+#include "array.h"
+#include "ft_printf.h"
 
 int		main(int argc, char **argv, char **env)
 {
-	t_kesh	val;
-
-	printf("Hello world !\n");
 	if (argc != 1)
 	{
-		printf("usage: %s\n", argv[0]);
+		ft_dpf(2, "usage: %s\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
 	else
 	{
-		printf("run shell\n");
-		// init_env()
-		if ((val.env = ft_str2dup((char const **)env)) != NULL)
+		t_array av;
+
+		void	*tmp;
+
+		tmp = (void *)ft_str2dup((char const **)env);
+		av = new_array(tmp, ft_str2len(env) * sizeof(char *), sizeof(char *), 1);
+		free(tmp);
+		if (av.p != NULL)
 		{
-			ft_putendl2((char const **)val.env);
-			val.name_prog = argv[0];
-			val.on = true;
-			// shell(val)
-			// free_all()
-			ft_mem2del((void ***)&val.env, ft_str2len(val.env));
+			foreach_array(&av, ft_putendl);
+			foreach_array(&av, free);
+			free(av.p);
 		}
 	}
 	return (EXIT_SUCCESS);
