@@ -2,8 +2,10 @@
 #include "memoryft.h"
 #include "array.h"
 
-t_array	new_array(void *src, size_t size, size_t size_p)
+t_array	new_array(void *src, size_t size, size_t size_p,
+	unsigned char const opt)
 {
+	t_array	a;
 	void	*p;
 	size_t	pow_of2;
 	size_t	used_space;
@@ -21,5 +23,7 @@ t_array	new_array(void *src, size_t size, size_t size_p)
 		ft_bzero(p, size);
 		used_space = 0;
 	}
-	return (init_array(p, pow_of2, used_space, size_p));
+	a = init_array(p, pow_of2, used_space, size_p);
+	*(unsigned char *)a.opt = opt;
+	return (a);
 }

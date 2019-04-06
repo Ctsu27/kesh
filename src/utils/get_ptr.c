@@ -1,11 +1,8 @@
-#include <stdlib.h>
+#include "array.h"
 
-void	*get_ptr(void const *pos,
-			size_t const n_block, size_t const size_per_block)
+void	*get_ptr(void *a, size_t const idx)
 {
-	char	*res;
-
-	res = (char *)pos;
-	res += n_block * size_per_block;
-	return ((void *)res);
+	return ((((t_array *)a)->opt[OPT_PTR_CONTENT_IDX] == 0)
+		? ((char *)((t_array *)a)->p + idx * ((t_array *)a)->size_p)
+		: ((void *)((char **)((t_array *)a)->p)[idx]));
 }
