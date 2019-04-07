@@ -14,18 +14,12 @@
 
 enum	e_token_state
 {
-	TOKEN_STATE_UNDEFINED,
 	TOKEN_STATE_BASIC,
 	TOKEN_STATE_SQUOTE,
 	TOKEN_STATE_DQUOTE,
 	TOKEN_STATE_BQUOTE,
 	TOKEN_STATE_EXPANSION,
 	TOKEN_STATE_SIZE
-};
-
-enum	e_token_undefined_type
-{
-	TOKEN_UNDEFINED_UNDEFINED
 };
 
 enum	e_token_basic_type
@@ -72,13 +66,15 @@ enum	e_token_shell_type
 	TOKEN_KESH_GREATAND
 };
 
-typedef struct	s_token
+typedef struct		s_token
 {
 	char			*matcher;
 	int				(*check_syntax)(void *);
 	int				(*f)(void *);
 	unsigned int	type;
-}				t_token;
+}					t_token;
 
-extern char	*token_state_to_string(int const id);
+extern int const	g_token_definition[TOKEN_STATE_SIZE][128];
+extern int			(*g_token_basic_handler[12])();
+extern char			*token_state_to_string(int const id);
 #endif
