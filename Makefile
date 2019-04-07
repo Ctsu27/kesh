@@ -6,7 +6,7 @@
 #    By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/12 10:24:15 by kehuang           #+#    #+#              #
-#    Updated: 2019/04/06 15:20:31 by kehuang          ###   ########.fr        #
+#    Updated: 2019/04/07 13:12:02 by kehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,8 @@ SRC_ARRAY_DIR			:=			array
 
 INC_ARRAY_NAME			:=			array.h					\
 
-SRC_ARRAY_NAME			:=			find_array.c			\
+SRC_ARRAY_NAME			:=			delete_array.c			\
+									find_array.c			\
 									find_index_array.c		\
 									foreach_array.c			\
 									init_array.c			\
@@ -248,6 +249,6 @@ endif
 
 main:
 	@$(MAKE)
-	@gcc -o test main.c $(LIBFLAGS) $(filter-out $(OBJ_DIR)/kesh.o,$(OBJS)) -I$(INC_DIR)
+	@gcc -g3 -o test.out main.c $(LIBFLAGS) $(filter-out $(OBJ_DIR)/kesh.o,$(OBJS)) -I$(INC_DIR)
 	./test
 .PHONY: main

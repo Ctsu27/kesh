@@ -24,6 +24,7 @@ typedef struct	s_array
 	_Bool	opt[8];
 }				t_array;
 
+extern void		delete_array(t_array *a, void (*callback)(void *));
 extern void		*find_array(t_array *a, int (*cmp)(void *));
 extern size_t	find_index_array(t_array *a, int (*cmp)(void *));
 extern void		foreach_array(t_array *a, void (*callback)());
@@ -31,7 +32,7 @@ extern void		foreach_array(t_array *a, void (*callback)());
 extern t_array	init_array(void *p, size_t capacity,
 	size_t size, size_t size_p);
 
-extern t_array new_array(void *src, size_t size, size_t size_p,
+extern t_array	new_array(void *src, size_t size, size_t size_p,
 	unsigned char const opt);
 
 extern void		push_array(t_array *a, void *src, size_t size);
