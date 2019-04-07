@@ -1,6 +1,3 @@
-#include <stdio.h>
-
-
 #include <stdlib.h>
 #include "libft.h"
 #include "kesh.h"
@@ -8,8 +5,20 @@
 #include "array.h"
 #include "ft_printf.h"
 
+void	init_kesh(t_kesh *meta, char **env)
+{
+	void	*tmp;
+
+	meta->on = 1;
+	tmp = (void *)ft_str2dup((char const **)env);
+	meta->env = new_array(tmp, ft_str2len(env) * sizeof(char *), sizeof(char *), OPT_PTR_CONTENT);
+	free(tmp);
+}
+
 int		main(int argc, char **argv, char **env)
 {
+	t_kesh	meta_data;
+
 	if (argc != 1)
 	{
 		ft_dpf(2, "usage: %s\n", argv[0]);
@@ -17,19 +26,7 @@ int		main(int argc, char **argv, char **env)
 	}
 	else
 	{
-		t_array av;
-
-		void	*tmp;
-
-		tmp = (void *)ft_str2dup((char const **)env);
-		av = new_array(tmp, ft_str2len(env) * sizeof(char *), sizeof(char *), 1);
-		free(tmp);
-		if (av.p != NULL)
-		{
-			foreach_array(&av, ft_putendl);
-			foreach_array(&av, free);
-			free(av.p);
-		}
+		init_kesh(&meta_data, env);
 	}
 	return (EXIT_SUCCESS);
 }

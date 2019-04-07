@@ -16,4 +16,5 @@ void	delete_array(t_array *a, void (*callback)(void *))
 			++idx;
 		}
 	}
+	free(a);
 }

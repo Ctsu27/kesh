@@ -3,7 +3,7 @@
 
 typedef struct	s_kesh
 {
-	char	**env;
+	void	*env;
 	char	*name_prog;
 	_Bool	on;
 }				t_kesh;

@@ -32,7 +32,7 @@ extern void		foreach_array(t_array *a, void (*callback)());
 extern t_array	init_array(void *p, size_t capacity,
 	size_t size, size_t size_p);
 
-extern t_array	new_array(void *src, size_t size, size_t size_p,
+extern t_array	*new_array(void *src, size_t size, size_t size_p,
 	unsigned char const opt);
 
 extern void		push_array(t_array *a, void *src, size_t size);

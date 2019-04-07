@@ -250,5 +250,5 @@ endif
 main:
 	@$(MAKE)
 	@gcc -g3 -o test.out main.c $(LIBFLAGS) $(filter-out $(OBJ_DIR)/kesh.o,$(OBJS)) -I$(INC_DIR)
-	./test
+	./test.out
 .PHONY: main
