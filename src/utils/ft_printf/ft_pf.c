@@ -12,7 +12,7 @@ static const _Bool	g_is_convert[256] = \
 	['u'] = 1,
 	['x'] = 1
 };
-static int			(*g_converter[256])() = \
+static int			(*g_converter[256])(t_pf *, va_list *) = \
 {
 	['X'] = &x__conv,
 	['c'] = &c_conv,
@@ -22,6 +22,23 @@ static int			(*g_converter[256])() = \
 	['u'] = &u_conv,
 	['x'] = &x_conv
 };
+
+static void	print_format(t_pf *buf, const char *fmt, va_list *ap)
+{
+	while (*fmt != '\0')
+	{
+		if (*fmt == '%')
+		{
+			++fmt;
+			if (g_is_convert[(int)*fmt])
+				g_converter[(int)*fmt](buf, ap);
+		}
+		else
+			push_buf(buf, *fmt);
+		++fmt;
+	}
+	put_buf(buf);
+}
 
 int			ft_dpf(int fd, const char *fmt, ...)
 {
@@ -33,19 +50,7 @@ int			ft_dpf(int fd, const char *fmt, ...)
 	buf.idx = 0;
 	buf.fd = fd;
 	va_start(ap, fmt);
-	while (*fmt != '\0')
-	{
-		if (*fmt == '%')
-		{
-			++fmt;
-			if (g_is_convert[(int)*fmt])
-				g_converter[(int)*fmt](&buf, &ap);
-		}
-		else
-			push_buf(&buf, *fmt);
-		++fmt;
-	}
-	put_buf(&buf);
+	print_format(&buf, fmt, &ap);
 	va_end(ap);
 	return (buf.idx);
 }
@@ -60,19 +65,7 @@ int			ft_pf(const char *fmt, ...)
 	buf.idx = 0;
 	buf.fd = 1;
 	va_start(ap, fmt);
-	while (*fmt != '\0')
-	{
-		if (*fmt == '%')
-		{
-			++fmt;
-			if (g_is_convert[(int)*fmt])
-				g_converter[(int)*fmt](&buf, &ap);
-		}
-		else
-			push_buf(&buf, *fmt);
-		++fmt;
-	}
-	put_buf(&buf);
+	print_format(&buf, fmt, &ap);
 	va_end(ap);
 	return (buf.idx);
 }
