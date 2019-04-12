@@ -1,22 +1,25 @@
 #include "array.h"
 #include "utils.h"
 
-size_t	find_index_array(t_array *a, int (*cmp)(void *))
+size_t	array_find_index(t_array *a, int (*cmp)(void *))
 {
+	void	*pos;
 	size_t	max;
 	size_t	idx;
-	size_t	size_p;
+	size_t	p_size;
 
 	if (cmp == NULL)
 		return ((size_t)-1);
-	max = a->size / a->size_p;
+	pos = a->p;
+	max = a->length;
 	idx = 0;
-	size_p = a->size_p;
+	p_size = a->p_size;
 	while (idx < max)
 	{
-		if (cmp(get_ptr(a, idx)) == 0)
+		if (cmp(pos) == 0)
 			return (idx);
 		++idx;
+		pos += p_size;
 	}
 	return ((size_t)-1);
 }

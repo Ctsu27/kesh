@@ -46,7 +46,10 @@ else
   ifneq ($(DEV),)
   OBJ_DIR				:=			./dev
   CFLAGS				+=			-g3
-  CFLAGS				+=			-pedantic
+  CFLAGS				+=			-O0 -std=c99 \
+  									-Wchar-subscripts -Wparentheses \
+									-Wsequence-point -Winline \
+									-Wdisabled-optimization
   else
   OBJ_DIR				:=			./objs
   endif
@@ -119,9 +122,9 @@ SRC_UTILS_NAME			:=			ft_err.c				\
 									ft_mem2del.c			\
 									ft_str2dup.c			\
 									ft_putendl2.c			\
-									get_ptr.c				\
 									is_pow_of2.c			\
 									round_up_pow.c			\
+									# get_ptr.c				\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_UTILS_NAME:.c=.o))
 
@@ -135,15 +138,14 @@ SRC_ARRAY_DIR			:=			array
 
 INC_ARRAY_NAME			:=			array.h					\
 
-SRC_ARRAY_NAME			:=			delete_array.c			\
-									find_array.c			\
-									find_index_array.c		\
-									foreach_array.c			\
-									init_array.c			\
-									new_array.c				\
-									push_array.c			\
-									push_at_array.c			\
-									realloc_array.c			\
+SRC_ARRAY_NAME			:=			array_delete.c			\
+									array_find.c			\
+									array_find_index.c		\
+									array_foreach.c			\
+									array_new.c				\
+									array_push.c			\
+									array_push_at.c			\
+									array_realloc.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_ARRAY_NAME:.c=.o))
 
