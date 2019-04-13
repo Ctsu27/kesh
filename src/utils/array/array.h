@@ -20,5 +20,5 @@ extern int		array_push(t_array *a, void const *src, size_t n_element);
 extern int		array_push_at(t_array *a, void const *src, size_t n_element,
 					size_t const at);
 extern int		array_realloc(t_array *a, size_t length, size_t p_size);
-
+extern void		array_show(t_array *a);
 #endif

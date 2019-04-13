@@ -124,7 +124,6 @@ SRC_UTILS_NAME			:=			ft_err.c				\
 									ft_putendl2.c			\
 									is_pow_of2.c			\
 									round_up_pow.c			\
-									# get_ptr.c				\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_UTILS_NAME:.c=.o))
 
@@ -146,6 +145,7 @@ SRC_ARRAY_NAME			:=			array_delete.c			\
 									array_push.c			\
 									array_push_at.c			\
 									array_realloc.c			\
+									array_show.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_ARRAY_NAME:.c=.o))
 
