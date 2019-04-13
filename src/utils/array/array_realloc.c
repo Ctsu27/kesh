@@ -15,7 +15,7 @@ int		array_realloc(t_array *a, size_t length, size_t p_size)
 	{
 		if ((p = malloc(new_capacity)) == NULL)
 			return (EXIT_FAILURE);
-		size_to_cpy = length * p_size;
+		size_to_cpy = a->length * p_size;
 		if (size_to_cpy > new_capacity)
 			size_to_cpy = new_capacity;
 		ft_memcpy(p, a->p, size_to_cpy);

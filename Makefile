@@ -164,6 +164,7 @@ SRC_FT_PRINTF_NAME		:=			ft_pf.c					\
 									ft_pf_buf.c				\
 									c_conv.c				\
 									id_conv.c				\
+									p_conv.c				\
 									s_conv.c				\
 									u_conv.c				\
 									x__conv.c				\
