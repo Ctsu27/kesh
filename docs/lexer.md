@@ -4,6 +4,9 @@ Lexer
 Token
 -----
 
+##### Controller operator
+
+
 * Redirection
 	* `|`
 	* `<` `>`
@@ -15,18 +18,25 @@ Token
 	* `;`
 * Descriptor closure
 	* `-` with `[n]&<- [n]&>- [n]<&- [n]>&-`
-* Expansion
-	* `$` `~`
-	* `"double"` `'simple'` `` `back` ``
-* Word
-	* `[A-Za-z0-9!@#%^*()-_=+[]{}?/.,]`
-* White space
-	* `space` `tabs` `new line`
-* OPTIONAL SCRIPT (Reserved keyword)
-	* `if` `elif` `else`
-	* `while` `for`
-	* `+` `-` `*` `/` `%`
-	* `identifier`
+
+##### Expansion
+
+* `$` `~`
+* `"double"` `'simple'` `` `back` ``
+
+##### Word
+
+* `[A-Za-z0-9!@#%^*()-_=+[]{}?/.,]`
+
+##### White space
+* `space` `tabs` `new line`
+
+##### OPTIONAL SCRIPT (Reserved keyword)
+
+* `if` `elif` `else`
+* `while` `for`
+* `+` `-` `*` `/` `%`
+* `identifier`
 
 ```
 '<'                                =>  TOK_REDIR
