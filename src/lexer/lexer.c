@@ -6,7 +6,8 @@
 #include "strft.h"
 
 // int		lexer(t_array *input)
-int		lexer(char *input, t_array *token)
+int		lexer(char const *input, void *token,
+	int const *token_definition, int (*token_handler[])())
 {
 	size_t	max;
 	size_t	idx;
@@ -14,18 +15,16 @@ int		lexer(char *input, t_array *token)
 
 	(void)token;
 	ft_pf("lexer input: [%s]\n", input);
-	ft_pf("sizeof(g_token_definition) = %u\n", (unsigned int)sizeof(g_token_definition));
-	ft_pf("sizeof(g_token_basic_handler) = %u\n", (unsigned int)sizeof(g_token_basic_handler));
 	max = ft_strlen(input);
 	idx = 0;
 	while (idx < max)
 	{
-		if (g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]] == 0)
+		if (token_handler[token_definition[(int)input[idx]]] == 0)
 		{
 			ft_dpf(2, "Function token: undefined near [%u] => '%c' :(\n", idx, input[idx]);
 			return (-1);
 		}
-		ret = g_token_basic_handler[g_token_definition[TOKEN_STATE_BASIC][(int)input[idx]]](&idx, &token, input[idx]);
+		ret = token_handler[token_definition[(int)input[idx]]](&idx, &token, input[idx]);
 		if (ret != 0)
 		{
 			if (ret == -1)

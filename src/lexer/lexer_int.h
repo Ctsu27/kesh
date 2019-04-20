@@ -1,6 +1,8 @@
 #ifndef LEXER_H
 # define LEXER_H
 
+# include <stdlib.h>
+
 /*
 **	";"		->		TOKEN_SEMICOLON
 **	"|"		->		TOKEN_PIPE
@@ -66,15 +68,12 @@ enum	e_token_shell_type
 	TOKEN_KESH_GREATAND
 };
 
-typedef struct		s_token
+typedef struct	s_token
 {
-	char			*matcher;
-	int				(*check_syntax)(void *);
-	int				(*f)(void *);
-	unsigned int	type;
-}					t_token;
+	char	*p;
+	size_t	len;
+	int		token_type;
+}				t_token;
 
-extern int const	g_token_definition[TOKEN_STATE_SIZE][128];
-extern int			(*g_token_basic_handler[12])();
 extern char			*token_state_to_string(int const id);
 #endif
