@@ -8,7 +8,6 @@ int		handler_word(size_t *idx, void *token, char const *input,
 	t_token	*tiktok;
 	size_t	i;
 
-	(void)token;
 	i = *idx;
 	while (token_definition[(int)input[i]] == TOKEN_BASIC_WORD)
 		++i;

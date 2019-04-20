@@ -1,6 +1,7 @@
+#include "handler.h"
 #include "lexer_int.h"
 
-int const g_token_basic_definition[128] = {
+int const g_token_basic_definition[256] = {
 	['\0'] = TOKEN_BASIC_UNDEFINED,
 	['\x1'] = TOKEN_BASIC_UNDEFINED,
 	['\x2'] = TOKEN_BASIC_UNDEFINED,
@@ -37,9 +38,9 @@ int const g_token_basic_definition[128] = {
 	['!'] = TOKEN_BASIC_WORD,
 	['"'] = TOKEN_BASIC_DQUOTE,
 	['#'] = TOKEN_BASIC_WORD,
-	['$'] = TOKEN_BASIC_EXPANSION,
+	['$'] = TOKEN_BASIC_SH,
 	['%'] = TOKEN_BASIC_WORD,
-	['&'] = TOKEN_BASIC_AND,
+	['&'] = TOKEN_BASIC_SH,
 	['\''] = TOKEN_BASIC_SQUOTE,
 	['('] = TOKEN_BASIC_WORD,
 	[')'] = TOKEN_BASIC_WORD,
@@ -60,8 +61,8 @@ int const g_token_basic_definition[128] = {
 	['8'] = TOKEN_BASIC_WORD,
 	['9'] = TOKEN_BASIC_WORD,
 	[':'] = TOKEN_BASIC_WORD,
-	[';'] = TOKEN_BASIC_SEMICOLON,
-	['<'] = TOKEN_BASIC_LESS,
+	[';'] = TOKEN_BASIC_SH,
+	['<'] = TOKEN_BASIC_SH,
 	['='] = TOKEN_BASIC_WORD,
 	['>'] = TOKEN_BASIC_WORD,
 	['?'] = TOKEN_BASIC_WORD,
@@ -125,23 +126,20 @@ int const g_token_basic_definition[128] = {
 	['y'] = TOKEN_BASIC_WORD,
 	['z'] = TOKEN_BASIC_WORD,
 	['{'] = TOKEN_BASIC_WORD,
-	['|'] = TOKEN_BASIC_PIPE,
+	['|'] = TOKEN_BASIC_SH,
 	['}'] = TOKEN_BASIC_WORD,
-	['~'] = TOKEN_BASIC_EXPANSION,
-	['\x7f'] = TOKEN_BASIC_UNDEFINED
+	['~'] = TOKEN_BASIC_SH,
+	['\x7f'] = TOKEN_BASIC_UNDEFINED,
+	[128 ... 255] = TOKEN_BASIC_UNDEFINED
 };
 
-int (*g_token_basic_handler[12])() = {
+int		(*g_token_basic_handler[7])(size_t *, void *, char const *,
+	int const *) = {
 	[TOKEN_BASIC_UNDEFINED] = NULL,
-	[TOKEN_BASIC_WSPACE] = NULL,
-	[TOKEN_BASIC_WORD] = NULL,
-	[TOKEN_BASIC_SQUOTE] = NULL,
-	[TOKEN_BASIC_DQUOTE] = NULL,
-	[TOKEN_BASIC_BQUOTE] = NULL,
-	[TOKEN_BASIC_SEMICOLON] = NULL,
-	[TOKEN_BASIC_PIPE] = NULL,
-	[TOKEN_BASIC_AND] = NULL,
-	[TOKEN_BASIC_LESS] = NULL,
-	[TOKEN_BASIC_GREAT] = NULL,
-	[TOKEN_BASIC_EXPANSION] = NULL
+	[TOKEN_BASIC_WSPACE] = &handler_white_space, //&handler_white_space,
+	[TOKEN_BASIC_WORD] = &handler_word,
+	[TOKEN_BASIC_SQUOTE] = NULL, //&handler_simple_quote,
+	[TOKEN_BASIC_DQUOTE] = NULL, //&handler_double_quote,
+	[TOKEN_BASIC_BQUOTE] = NULL, //&handler_back_quote,
+	[TOKEN_BASIC_SH] = NULL
 };
