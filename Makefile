@@ -103,6 +103,7 @@ INC_LEXER_NAME			:=			lexer.h					\
 
 SRC_LEXER_NAME			:=			lexer.c					\
 									lexer_config.c			\
+									show_token.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_LEXER_NAME:.c=.o))
 

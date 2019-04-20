@@ -1,5 +1,5 @@
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef LEXER_INT_H
+# define LEXER_INT_H
 
 # include <stdlib.h>
 
@@ -75,5 +75,5 @@ typedef struct	s_token
 	int		token_type;
 }				t_token;
 
-extern char			*token_state_to_string(int const id);
+extern void		show_token(t_token **token);
 #endif
