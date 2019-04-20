@@ -110,6 +110,25 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_LEXER_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_LEX
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
+#   handler
+
+SRC_HANDLER_DIR			:=			handler
+
+INC_HANDLER_NAME		:=			handler.h				\
+
+SRC_HANDLER_NAME		:=			handler_back_quote.c	\
+									handler_double_quote.c	\
+									handler_sh.c			\
+									handler_simple_quote.c	\
+									handler_white_space.c	\
+									handler_word.c			\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_HANDLER_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_LEXER_DIR)/$(SRC_HANDLER_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_LEXER_DIR)/$(SRC_HANDLER_DIR)/,$(INC_HANDLER_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
 #-----------#
 #   UTILS   #
 
