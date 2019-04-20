@@ -64,7 +64,7 @@ int const g_token_basic_definition[256] = {
 	[';'] = TOKEN_BASIC_SH,
 	['<'] = TOKEN_BASIC_SH,
 	['='] = TOKEN_BASIC_WORD,
-	['>'] = TOKEN_BASIC_WORD,
+	['>'] = TOKEN_BASIC_SH,
 	['?'] = TOKEN_BASIC_WORD,
 	['@'] = TOKEN_BASIC_WORD,
 	['A'] = TOKEN_BASIC_WORD,

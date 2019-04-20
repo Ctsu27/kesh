@@ -2,10 +2,10 @@
 #include "array.h"
 #include "lexer_int.h"
 
+
 #include "ft_printf.h"
 #include "strft.h"
 
-// int		lexer(t_array *input)
 int		lexer(unsigned char const *input, void *token,
 	int const *token_definition, int (*token_handler[])())
 {
@@ -18,10 +18,8 @@ int		lexer(unsigned char const *input, void *token,
 	a = (t_array *)token;
 	max = ft_strlen((char *)input);
 	idx = 0;
-	ft_pf("max == %u\n", max);
 	while (idx < max)
 	{
-		ft_pf("idx == %u\n", idx);
 		if (token_handler[token_definition[(int)input[idx]]] == NULL)
 		{
 			ft_dpf(2, "Function token: undefined near [%u] => '%c' :(\n", idx, input[idx]);
@@ -38,7 +36,6 @@ int		lexer(unsigned char const *input, void *token,
 				ft_pf("need closure :D\n");
 			return (ret);
 		}
-		// ++idx;
 	}
 	return (0);
 }
