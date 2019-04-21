@@ -264,6 +264,7 @@ t test unit:
 .PHONY: t test unit
 
 val vg valg:
+	@$(MAKE)
 ifeq (,$(findstring fsanitize,$(CFLAGS)))
 	@valgrind --leak-check=full ./$(NAME)
 else

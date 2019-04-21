@@ -2,6 +2,7 @@
 # define LEXER_INT_H
 
 # include <stdlib.h>
+# include "lexer.h"
 
 /*
 **	";"		->		TOKEN_SEMICOLON
@@ -71,13 +72,6 @@ typedef struct	s_sh_handler
 	size_t	token_size;
 	int		token_type;
 }				t_sh_handler;
-
-typedef struct	s_token
-{
-	unsigned char	*p;
-	size_t			len;
-	int				token_type;
-}				t_token;
 
 extern void		show_token(t_token **token);
 #endif

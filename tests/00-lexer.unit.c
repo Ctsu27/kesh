@@ -19,7 +19,6 @@ static void	free_token(void *arr, size_t len)
 	}
 }
 
-
 static int	check_lexer(unsigned char *fmt)
 {
 	t_array	*token;
