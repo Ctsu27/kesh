@@ -39,13 +39,17 @@ int			main(void)
 {
 	t_chai			test[] = {
 		{"Should handle minishell level tokens", &check_lexer, NULL},
+		{"Should handle simple quote tokens", &check_lexer, NULL},
+		{"Should handle double quote tokens", &check_lexer, NULL},
 		{"Should handle basic and well formatted tokens", &check_lexer, NULL},
 		{"Should handle basic and weird formatted tokens", &check_lexer, NULL},
 		{"Should handle expansion with controller operator tokens", &check_lexer, NULL},
 		{"Should handle white spaces", &check_lexer, NULL}
 	};
 	char	*fmt[] = {
-		"cmd args1 args2",
+		"cmd -flags -with -other -flag args1 args2 / . coucou invalid",
+		"cmd '-flags' args2 '\\simple quote\\'",
+		"cmd \"-flags\" args2 \"\\\"doubl\\e\\\"quot\\e\\\"\"",
 		"cat file.txt | grep \"[a-z]\" > result.txt",
 		"cat file.txt|grep \"[a-z]\" > result.txt",
 		/**
@@ -74,7 +78,7 @@ int			main(void)
 		 *                           /     \
 		 *                  "echo ~/$PATH"  "'path.txt'"
 		 */
-		"     ls    -R . > content_stdout.txt && cat -e content_stdout.txt"
+		"     ls    -R . 2>& content_stdout.txt && cat -e content_stdout.txt"
 		/**
 		 * <ls>  <-R>  <.>  <1>  <'>'>  <content_stdout.txt>  <&&>  <cat>  <-e>  <content_stdout.txt>
 		 *  <W>  <W>   <W>  <W>   <R>           <W>           <A>    <W>   <W>            <W>
@@ -93,7 +97,6 @@ int			main(void)
 	printf("Lexer[%zu]:\n", sizeof(test) / sizeof(*test));
 	for (size_t idx = 0,
 			max = sizeof(test) / sizeof(*test);
-			// max = 1;
 		 idx < max;
 		 ++idx)
 	{

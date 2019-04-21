@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "ft_printf.h"
 #include "lexer_int.h"
+#include "utils.h"
 
 static char	*token_state_to_string(int const id)
 {
@@ -11,6 +12,11 @@ static char	*token_state_to_string(int const id)
 		[TOKEN_SQUOTE] = "token squote",
 		[TOKEN_DQUOTE] = "token dquote",
 		[TOKEN_BQUOTE] = "token bquote",
+		[TOKEN_DOLLAR] = "token dollar",
+		[TOKEN_TILDE] = "token tilde",
+		[TOKEN_AND] = "token and",
+		[TOKEN_OR] = "token or",
+		[TOKEN_SEPARATOR] = "token separator",
 		[TOKEN_PIPE] = "token pipe",
 		[TOKEN_LESS] = "token less",
 		[TOKEN_GREAT] = "token great",
@@ -35,10 +41,14 @@ void		show_token(t_token **token)
 	else
 	{
 		ft_pf("<TOK> => (\n");
+		ft_dpf(0, C_YELLOW_STR);
 		ft_pf("  string: \"");
 		write(1, (*token)->p, (*token)->len);
 		ft_pf("\"\n");
+		ft_dpf(0, C_X_STR);
+		ft_dpf(0, C_CYAN_STR);
 		ft_pf("  type: %s\n", token_state_to_string((*token)->token_type));
+		ft_dpf(0, C_X_STR);
 		ft_pf(")\n\n");
 	}
 }

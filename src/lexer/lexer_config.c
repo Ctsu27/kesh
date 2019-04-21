@@ -141,5 +141,5 @@ int		(*g_token_basic_handler[7])(size_t *, void *, char const *,
 	[TOKEN_BASIC_SQUOTE] = &handler_simple_quote,
 	[TOKEN_BASIC_DQUOTE] = &handler_double_quote,
 	[TOKEN_BASIC_BQUOTE] = NULL, // &handler_back_quote, // bonus
-	[TOKEN_BASIC_SH] = &handler_undefined // handler_sh
+	[TOKEN_BASIC_SH] = &handler_sh
 };

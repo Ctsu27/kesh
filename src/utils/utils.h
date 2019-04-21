@@ -3,6 +3,10 @@
 
 # include <stdlib.h>
 
+# define C_YELLOW_STR "\033[31m"
+# define C_CYAN_STR "\033[36m"
+# define C_X_STR "\033[0m"
+
 extern int		ft_err(char *prog, char const *msg);
 extern int		ft_getopt(int argc, char **argv, char const *opt_str,
 					_Bool *flag);

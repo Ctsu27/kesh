@@ -50,6 +50,11 @@ enum	e_token_type
 	TOKEN_SQUOTE,
 	TOKEN_DQUOTE,
 	TOKEN_BQUOTE,
+	TOKEN_DOLLAR,
+	TOKEN_TILDE,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_SEPARATOR,
 	TOKEN_PIPE,
 	TOKEN_LESS,
 	TOKEN_GREAT,
@@ -61,6 +66,13 @@ enum	e_token_type
 	TOKEN_DGREATAGG,
 	TOKEN_SIZE
 };
+
+typedef struct	s_sh_handler
+{
+	char	*token_str;
+	size_t	token_size;
+	int		token_type;
+}				t_sh_handler;
 
 typedef struct	s_token
 {
