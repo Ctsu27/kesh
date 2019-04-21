@@ -135,11 +135,11 @@ int const g_token_basic_definition[256] = {
 
 int		(*g_token_basic_handler[7])(size_t *, void *, char const *,
 	int const *) = {
-	[TOKEN_BASIC_UNDEFINED] = NULL,
-	[TOKEN_BASIC_WSPACE] = &handler_white_space, //&handler_white_space,
+	[TOKEN_BASIC_UNDEFINED] = &handler_undefined, // to replace with NULL
+	[TOKEN_BASIC_WSPACE] = &handler_white_space,
 	[TOKEN_BASIC_WORD] = &handler_word,
-	[TOKEN_BASIC_SQUOTE] = NULL, //&handler_simple_quote,
-	[TOKEN_BASIC_DQUOTE] = NULL, //&handler_double_quote,
-	[TOKEN_BASIC_BQUOTE] = NULL, //&handler_back_quote,
-	[TOKEN_BASIC_SH] = NULL
+	[TOKEN_BASIC_SQUOTE] = &handler_simple_quote,
+	[TOKEN_BASIC_DQUOTE] = &handler_double_quote,
+	[TOKEN_BASIC_BQUOTE] = NULL, // &handler_back_quote, // bonus
+	[TOKEN_BASIC_SH] = &handler_undefined // handler_sh
 };

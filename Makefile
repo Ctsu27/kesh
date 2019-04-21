@@ -123,6 +123,7 @@ SRC_HANDLER_NAME		:=			handler_back_quote.c	\
 									handler_simple_quote.c	\
 									handler_white_space.c	\
 									handler_word.c			\
+									handler_undefined.c		\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_HANDLER_NAME:.c=.o))
 

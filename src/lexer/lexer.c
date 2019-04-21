@@ -33,7 +33,7 @@ int		lexer(unsigned char const *input, void *token,
 			else if (ret == -2)
 				ft_dpf(2, "error memory allocation\n");
 			else if (ret == 1)
-				ft_pf("need closure :D\n");
+				ft_pf("need closure for '%c'\n", input[idx]);
 			return (ret);
 		}
 	}

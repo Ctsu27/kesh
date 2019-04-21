@@ -15,4 +15,8 @@ int		handler_white_space(size_t *idx, void *token, char const *input,
 	int const *token_definition);
 int		handler_word(size_t *idx, void *token, char const *input,
 	int const *token_definition);
+
+
+int		handler_undefined(size_t *idx, void *token, char const *input,
+	int const *token_definition);
 #endif
