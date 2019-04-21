@@ -5,16 +5,6 @@
 
 static t_sh_handler const	g_token_sh_definition[] = {
 	{
-		.token_str = "<<&",
-		.token_size = 3,
-		.token_type = TOKEN_DLESSAGG
-	},
-	{
-		.token_str = ">>&",
-		.token_size = 3,
-		.token_type = TOKEN_DGREATAGG
-	},
-	{
 		.token_str = "&&",
 		.token_size = 2,
 		.token_type = TOKEN_AND
@@ -101,8 +91,8 @@ static int			sh_controller_operator(t_token *toktok,
 	return (0);
 }
 
-static int			sh_expansion(t_token *toktok,
-	unsigned char const *input, size_t *idx, int const *token_definition)
+static int			sh_expansion(t_token *toktok, unsigned char const *input,
+	size_t *idx, int const *token_definition)
 {
 	int		token_type;
 	size_t	i;

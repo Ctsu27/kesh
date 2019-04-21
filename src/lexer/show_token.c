@@ -24,8 +24,6 @@ static char	*token_state_to_string(int const id)
 		[TOKEN_DGREAT] = "token dgreat",
 		[TOKEN_LESSAGG] = "token lessagg",
 		[TOKEN_GREATAGG] = "token greatagg",
-		[TOKEN_DLESSAGG] = "token dlessagg",
-		[TOKEN_DGREATAGG] = "token dgreatagg",
 		"not a token"
 	};
 
