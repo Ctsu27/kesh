@@ -4,6 +4,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include "kesh.h"
+#include "parser.h"
 #include "utils.h"
 
 void				free_env(void *data, size_t length)
@@ -44,32 +45,37 @@ void	show_env(void *p, size_t idx)
 
 inline static int	shell(t_kesh *meta)
 {
-	t_array	*token;
 	char	*line;
 	int		ret;
 
-	array_show(meta->env);
-	array_foreach(meta->env, &show_env);
+	// array_foreach(meta->env, &show_env);
 	ft_pf("enter %s\n", __FUNCTION__);
 	while (meta->on)
 	{
+		meta->kill = 0;
 		ft_dpf(0, "%s$>%s ", C_CYAN_STR, C_X_STR);
 		// TODO change gnl to line edition
 		ret = get_next_line(0, &line);
 		if (ret == 1)
 		{
-			token = array_new(sizeof(t_token *));
-			if ((ret = lexer((unsigned char const *)line, token,
+			meta->token = array_new(sizeof(t_token *));
+			if ((ret = lexer((unsigned char const *)line, meta->token,
 				g_token_basic_definition, g_token_basic_handler)) != 0)
 				ft_err(meta->name_prog, "Not enought memory for lexer");
 			else
 			{
 				// TODO parser
-				// TODO build ast
-				// TODO run ast
-				// TODO free all
-				array_foreach(token, &show_token);
-				array_delete(token, &free_token);
+				if (token_adjust(meta->token) == EXIT_SUCCESS)
+				{
+					// TODO build ast
+					// if (ast_build() == EXIT_SUCCESS)
+					// {
+						// TODO run ast
+					// }
+					// TODO free all
+				}
+				array_foreach(meta->token, &show_token);
+				array_delete(meta->token, &free_token);
 				free(line);
 			}
 		}

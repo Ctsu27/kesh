@@ -12,7 +12,10 @@ typedef struct	s_sv
 typedef struct	s_kesh
 {
 	t_array	*env;
+	t_array	*ast;
+	t_array	*token;
 	char	*name_prog;
+	_Bool	kill;
 	_Bool	on;
 }				t_kesh;
 

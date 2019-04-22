@@ -136,6 +136,22 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_LEXER_DIR)/$(SRC_HANDLER_DIR)/%.c $(addprefix $
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
 #-----------#
+#   PARSER  #
+
+SRC_PARSER_DIR			:=			parser
+
+INC_PARSER_NAME			:=			parser.h				\
+									parser_int.h			\
+
+SRC_PARSER_NAME			:=			token_adjust.c			\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_PARSER_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_PARSER_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_PARSER_DIR)/,$(INC_PARSER_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
+#-----------#
 #   SHELL   #
 
 SRC_SHELL_DIR			:=			shell

@@ -9,7 +9,8 @@ int		handler_word(size_t *idx, void *token, char const *input,
 	size_t	i;
 
 	i = *idx;
-	while (token_definition[(int)input[i]] == TOKEN_BASIC_WORD)
+	while (token_definition[(int)input[i]] == TOKEN_BASIC_WORD
+		|| (int)input[i] == '~')
 		++i;
 	if ((tiktok = (t_token *)malloc(sizeof(*tiktok))) == NULL)
 		return (-2);
