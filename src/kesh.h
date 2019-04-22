@@ -1,7 +1,13 @@
 #ifndef KESH_H
 # define KESH_H
 
-#include "array.h"
+# include "array.h"
+
+typedef struct	s_sv
+{
+	char	*str;
+	size_t	val;
+}				t_sv;
 
 typedef struct	s_kesh
 {
@@ -10,4 +16,6 @@ typedef struct	s_kesh
 	_Bool	on;
 }				t_kesh;
 
+extern void		free_env(void *data, size_t length);
+extern int 		init_shell(t_kesh *meta, char **env, char *name);
 #endif

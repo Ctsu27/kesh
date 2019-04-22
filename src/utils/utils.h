@@ -15,4 +15,8 @@ extern void		ft_putendl2(char const **s);
 extern char		**ft_str2dup(char const **s);
 extern _Bool	is_pow_of2(size_t const n);
 extern size_t	round_up_pow(size_t n);
+
+extern char		*ft_getenv(char **env, char *name);
+extern int		key_in_env(char **env, char *key, int size);
+extern char		**key_chr(char **env, char *key, int size);
 #endif

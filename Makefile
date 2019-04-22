@@ -64,6 +64,10 @@ endif
 
 SRC_DIR					:=			./src
 
+ifndef OBJ_DIR
+OBJ_DIR := ./objs
+endif
+
 INC_NAME				:=			kesh.h					\
 
 SRC_NAME				:=			kesh.c					\
@@ -132,13 +136,27 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_LEXER_DIR)/$(SRC_HANDLER_DIR)/%.c $(addprefix $
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
 #-----------#
+#   SHELL   #
+
+SRC_SHELL_DIR			:=			shell
+
+SRC_SHELL_NAME			:=			init_shell.c			\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_SHELL_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_SHELL_DIR)/%.c $(addprefix $(SRC_DIR)/,$(INC_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
+#-----------#
 #   UTILS   #
 
 SRC_UTILS_DIR			:=			utils
 
 INC_UTILS_NAME			:=			utils.h					\
 
-SRC_UTILS_NAME			:=			ft_err.c				\
+SRC_UTILS_NAME			:=			env_utils.c				\
+									ft_err.c				\
 									ft_getopt.c				\
 									ft_mem2del.c			\
 									ft_str2dup.c			\
