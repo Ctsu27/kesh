@@ -101,7 +101,8 @@ static int			sh_expansion(t_token *toktok, unsigned char const *input,
 	if (input[*idx] == '$')
 	{
 		token_type = TOKEN_DOLLAR;
-		while (token_definition[(int)input[i]] == TOKEN_BASIC_WORD)
+		while (token_definition[(int)input[i]] == TOKEN_BASIC_WORD
+				&& input[i] != '/')
 			++i;
 	}
 	else
