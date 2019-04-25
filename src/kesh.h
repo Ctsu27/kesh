@@ -19,6 +19,5 @@ typedef struct	s_kesh
 	_Bool	on;
 }				t_kesh;
 
-extern void		free_env(void *data, size_t length);
 extern int 		init_shell(t_kesh *meta, char **env, char *name);
 #endif

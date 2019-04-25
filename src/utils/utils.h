@@ -19,4 +19,5 @@ extern size_t	round_up_pow(size_t n);
 extern char		*ft_getenv(char **env, char *name);
 extern int		key_in_env(char **env, char *key, int size);
 extern char		**key_chr(char **env, char *key, int size);
+extern void		free_env(void *data, size_t length);
 #endif

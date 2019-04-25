@@ -179,6 +179,7 @@ SRC_UTILS_NAME			:=			env_utils.c				\
 									ft_putendl2.c			\
 									is_pow_of2.c			\
 									round_up_pow.c			\
+									free_env.c				\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_UTILS_NAME:.c=.o))
 
