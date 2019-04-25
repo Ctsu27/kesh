@@ -19,7 +19,8 @@ int		array_push_at(t_array *a, void const *src, size_t n_element,
 	}
 	pos = a->p + at * a->p_size;
 	if (at < a->length)
-		ft_memmove(pos + size_to_push, pos, a->length * a->p_size - size_to_push);
+		ft_memmove(pos + size_to_push, pos,
+				a->length * a->p_size - size_to_push);
 	ft_memcpy(pos, src, size_to_push);
 	a->length += n_element;
 	return (EXIT_SUCCESS);

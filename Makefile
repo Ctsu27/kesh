@@ -197,6 +197,7 @@ SRC_ARRAY_NAME			:=			array_delete.c			\
 									array_find.c			\
 									array_find_index.c		\
 									array_foreach.c			\
+									array_map.c				\
 									array_new.c				\
 									array_push.c			\
 									array_push_at.c			\
