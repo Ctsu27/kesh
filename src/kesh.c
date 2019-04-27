@@ -7,20 +7,6 @@
 #include "parser.h"
 #include "utils.h"
 
-static void			free_token(void *arr, size_t len)
-{
-	t_token	**tokens;
-	size_t	idx;
-
-	tokens = (t_token **)arr;
-	idx = 0;
-	while (idx < len)
-	{
-		free(tokens[idx]);
-		++idx;
-	}
-}
-
 void	show_env(void *p, size_t idx)
 {
 	char	**s;
@@ -46,12 +32,14 @@ inline static int	shell(t_kesh *meta)
 		{
 			meta->token = array_new(sizeof(t_token *));
 			if ((ret = lexer((unsigned char const *)line, meta->token,
-				g_token_basic_definition, g_token_basic_handler)) != 0)
-				ft_err(meta->name_prog, "Not enought memory for lexer");
+							g_token_basic_definition, g_token_basic_handler)) != 0)
+				array_delete(meta->token, &free_token);
+				// ft_err(meta->name_prog, "Not enought memory for lexer");
 			else
 			{
 				// TODO parser
-				if (token_adjust(meta->token) == EXIT_SUCCESS)
+				// array_foreach(meta->token, &show_token);
+				if (token_adjust(&meta->token) == EXIT_SUCCESS)
 				{
 					// TODO build ast
 					// if (ast_build() == EXIT_SUCCESS)
@@ -59,11 +47,10 @@ inline static int	shell(t_kesh *meta)
 						// TODO run ast
 					// }
 					// TODO free all
+					array_delete(meta->token, &delete_token);
 				}
-				array_foreach(meta->token, &show_token);
-				array_delete(meta->token, &free_token);
-				free(line);
 			}
+			free(line);
 		}
 		else if (ret == 0)
 		{

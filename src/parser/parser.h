@@ -3,5 +3,5 @@
 
 # include "array.h"
 
-int		token_adjust(t_array *token);
+int		token_adjust(t_array **token);
 #endif

@@ -151,6 +151,20 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_PARSER_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_PA
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
 	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
 
+#   EXPANSION
+
+SRC_EXPANSION_DIR		:=			expansion
+
+INC_EXPANSION_NAME		:=			expansion.h					\
+
+SRC_EXPANSION_NAME		:=			none_expansion.c			\
+
+OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_EXPANSION_NAME:.c=.o))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$(SRC_PARSER_DIR)/$(SRC_EXPANSION_DIR)/%.c $(addprefix $(SRC_DIR)/$(SRC_PARSER_DIR)/$(SRC_EXPANSION_DIR)/,$(INC_EXPANSION_NAME))
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR)
+	@printf "${C_C}%s${C_X} :: ${C_R}%s${C_X}\n"  $(NAME) $@
+
 #-----------#
 #   SHELL   #
 
@@ -180,6 +194,7 @@ SRC_UTILS_NAME			:=			env_utils.c				\
 									is_pow_of2.c			\
 									round_up_pow.c			\
 									free_env.c				\
+									free_token.c			\
 
 OBJS					+=			$(addprefix $(OBJ_DIR)/,$(SRC_UTILS_NAME:.c=.o))
 

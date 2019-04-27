@@ -20,4 +20,7 @@ extern char		*ft_getenv(char **env, char *name);
 extern int		key_in_env(char **env, char *key, int size);
 extern char		**key_chr(char **env, char *key, int size);
 extern void		free_env(void *data, size_t length);
+
+extern void		free_token(void *arr, size_t len);
+extern void		delete_token(void *arr, size_t len);
 #endif
