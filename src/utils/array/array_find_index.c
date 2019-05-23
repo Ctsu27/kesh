@@ -1,7 +1,7 @@
 #include "array.h"
 #include "utils.h"
 
-size_t	array_find_index(t_array *a, int (*cmp)(void *))
+size_t	array_find_index(t_array *a, int (*cmp)(void *, void *), void *to_find)
 {
 	void	*pos;
 	size_t	max;
@@ -16,7 +16,7 @@ size_t	array_find_index(t_array *a, int (*cmp)(void *))
 	p_size = a->p_size;
 	while (idx < max)
 	{
-		if (cmp(pos) == 0)
+		if (cmp(pos, to_find) == 0)
 			return (idx);
 		++idx;
 		pos += p_size;
